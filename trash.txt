@@ -1,0 +1,26 @@
+# with connection.cursor() as cursor:
+#     create_table_query = "CREATE TABLE word(id int AUTO_INCREMENT," \
+#                          " word_ua VARCHAR(32)," \
+#                          " word_ru VARCHAR(32), PRIMARY KEY(id));"
+#
+#     cursor.execute(create_table_query)
+#     print("Table created successfully")
+
+# with connection.cursor() as cursor:
+#     insert_query = "INSERT INTO word(word_ua, word_ru) VALUES('repair', 'ремонт');"
+#
+#     cursor.execute(insert_query)
+#     connection.commit()
+#     print("Insert created successfully")
+
+#     def select_word(self):
+#         with self.connection.cursor() as cursor:
+#             select = "SELECT word_ua, word_ru FROM word"
+#             cursor.execute(select)
+#             rows = cursor.fetchall()
+#             for row in rows:
+#                 print(row)
+#             print("successful")
+#         self.connection.close()
+# Base.select_word()
+
