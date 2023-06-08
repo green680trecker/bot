@@ -20,6 +20,7 @@ from tg_bot.handlers.song import register_song
 from tg_bot.handlers.test_of_word import register_test_words
 from tg_bot.handlers.test_user import register_test
 from tg_bot.handlers.coffee import register_collide
+from tg_bot.handlers.while_message import register_remind
 
 from tg_bot.middlewares.environment import EnvironmentMiddleware
 # from tg_bot.middlewares.temporary_middleware import Temporary_middleware
@@ -48,18 +49,24 @@ def register_all_handlers(dp):
     register_show_yes(dp)
     register_collide(dp)
     register_user_id(dp)
+    register_remind(dp)
     register_echo(dp)
 
 
+
+
+
 async def main():
+    """start of the bot"""
+    global bot
     logging.basicConfig(
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s')
     logger.info("Starting bot")
-    config = load_config(".env")
 
+    config = load_config(".env")
     storage = MemoryStorage()
-    bot = Bot(token=config.tg_bot.token, parse_mode="HTML")
+    bot = Bot(token=load_config(".env").tg_bot.token, parse_mode="HTML")
     dp = Dispatcher(bot, storage=storage)
 
 
