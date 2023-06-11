@@ -12,6 +12,8 @@ async def user_help(message: Message):
     /show_word
     /new_word
     /You_know
+    /message_is_in_channel
+    /send_photo_to_channel
     """
     await message.answer(f"All commands:\n {Help_command}", reply_markup=ReplyKeyboardRemove())
 

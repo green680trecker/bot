@@ -20,7 +20,7 @@ async def remind(message: Message):
 
 
 def register_remind(dp: Dispatcher):
-    dp.register_message_handler(remind, state="*", is_admin=True)
+    dp.register_message_handler(remind, state="*", is_admin=True, commands=['remind'])
 
 # print(x[11:16])
 # print(x[11:13])
