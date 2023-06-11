@@ -3,7 +3,11 @@ import logging
 
 from aiogram import Dispatcher, Bot
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
-# from aiogram.contrib.fsm_storage.redis import RedisStorage2
+
+from tg_bot.channel_hendlers.admin_forward_message import register_forward_message
+from tg_bot.channel_hendlers.admin_forward_photo import register_forward_photo
+from tg_bot.channel_hendlers.start_channel import register_start_channel
+
 
 from tg_bot.config import load_config
 from tg_bot.filters.admin import AdminFilter
@@ -14,6 +18,7 @@ from tg_bot.handlers.echo import register_echo
 from tg_bot.handlers.help import register_help
 from tg_bot.handlers.id import register_user_id
 from tg_bot.handlers.new_words import reqister_word
+from tg_bot.handlers.photo import register_photo
 from tg_bot.handlers.show_word import register_show
 from tg_bot.handlers.start import register_user
 from tg_bot.handlers.song import register_song
@@ -40,6 +45,10 @@ def register_all_filters(dp):
 def register_all_handlers(dp):
     register_help(dp)
     register_test_words(dp)
+    register_forward_message(dp)
+    register_start_channel(dp)
+    register_forward_photo(dp)
+    register_photo(dp)
     register_admin(dp)
     register_user(dp)
     register_test(dp)

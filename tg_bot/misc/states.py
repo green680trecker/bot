@@ -17,3 +17,15 @@ class English_test(StatesGroup):
     eg2 = State()
 
 
+class Forward_for_admin_message(StatesGroup):
+    f_d = State()
+
+class Forward_for_admin_photo(StatesGroup):
+    f_d_p1 = State()
+    f_d_p2 = State()
+
+class St_photo(StatesGroup):
+    ph = State()
+
+
+
