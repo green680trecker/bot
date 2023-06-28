@@ -1,8 +1,0 @@
-{"message_id": 1921, "from":
-    {"id": 748322764, "is_bot": false, "first_name": "Shadow", "username": "Trecker007", "language_code": "en"},
-    "chat": {"id": 748322764, "first_name": "Shadow", "username": "Trecker007", "type": "private"},
-    "date": 1687692129, "text": "/start", "entities": [{"type": "bot_command", "offset": 0, "length": 6}]}
-
-"forward_from": {"id": 1646574179, "is_bot": false, "first_name": "Elena", "last_name": "Arnaytova", "language_code": "ru"},
-"forward_date": 1687611489, "text": "Ну что ты дома уже?"}
-
