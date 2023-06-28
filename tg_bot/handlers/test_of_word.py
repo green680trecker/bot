@@ -4,14 +4,12 @@ from aiogram.dispatcher import FSMContext
 from tg_bot.misc.states import English_test
 from random import randrange
 
-from tg_bot.models.connect_db import Base
+from tg_bot.models.connect_db import Word
 
 number1 = randrange(1, 15)
 number2 = randrange(1, 15)
-req_base1 = Base()
-req_base2 = Base()
-word1 = req_base1.select_word_id(number1)
-word2 = req_base2.select_word_id(number2)
+word1 = Word().select_word_id(number1)
+word2 = Word().select_word_id(number2)
 
 async def test_word1(message: Message):
     global word1

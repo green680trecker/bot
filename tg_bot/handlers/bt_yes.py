@@ -1,9 +1,8 @@
 from aiogram import Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.types import Message
-from tg_bot.keyboards.all_replykeyboard import ReplyKeyboardRemove
 from tg_bot.misc.states import Show_word
-from tg_bot.models.connect_db import Base
+from tg_bot.models.connect_db import Word
 
 
 async def button_yes(message: Message):
@@ -12,11 +11,9 @@ async def button_yes(message: Message):
 
 async def button_yes2(message: Message, state: FSMContext):
     data = await state.get_data()
-
-    x = Base()
-    shows = x.select_words(limit=data)
+    shows = Word().select_words(limit=data)
     for show in shows:
-        await message.answer(f"{show[0]} - {show[1]}", reply_markup=ReplyKeyboardRemove())
+        await message.answer(f"{show[0]} - {show[1]}")
     await state.finish()
 
 

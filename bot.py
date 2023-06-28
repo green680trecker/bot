@@ -4,6 +4,10 @@ import logging
 from aiogram import Dispatcher, Bot
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
+from tg_bot.admin_handlers.add_admin import register_add_admin
+from tg_bot.admin_handlers.delete_admin import register_del_admin
+from tg_bot.admin_handlers.delete_user import register_del_user
+from tg_bot.admin_handlers.temporary_handler import register_some_func
 from tg_bot.channel_hendlers.admin_forward_message import register_forward_message
 from tg_bot.channel_hendlers.admin_forward_photo import register_forward_photo
 from tg_bot.channel_hendlers.start_channel import register_start_channel
@@ -20,7 +24,7 @@ from tg_bot.handlers.id import register_user_id
 from tg_bot.handlers.new_words import reqister_word
 from tg_bot.handlers.photo import register_photo
 from tg_bot.handlers.show_word import register_show
-from tg_bot.handlers.start import register_user
+from tg_bot.handlers.start import register_start
 from tg_bot.handlers.song import register_song
 from tg_bot.handlers.test_of_word import register_test_words
 from tg_bot.handlers.test_user import register_test
@@ -43,14 +47,19 @@ def register_all_filters(dp):
 
 
 def register_all_handlers(dp):
-    register_help(dp)
-    register_test_words(dp)
     register_forward_message(dp)
     register_start_channel(dp)
     register_forward_photo(dp)
+
+    register_del_admin(dp)
+    register_add_admin(dp)
+    register_del_user(dp)
+
+    register_help(dp)
+    register_test_words(dp)
     register_photo(dp)
     register_admin(dp)
-    register_user(dp)
+    register_start(dp)
     register_test(dp)
     register_song(dp)
     reqister_word(dp)
@@ -59,15 +68,13 @@ def register_all_handlers(dp):
     register_collide(dp)
     register_user_id(dp)
     register_remind(dp)
+    register_some_func(dp)
     register_echo(dp)
-
-
-
 
 
 async def main():
     """start of the bot"""
-    global bot
+
     logging.basicConfig(
         level=logging.INFO,
         format=u'%(filename)s:%(lineno)d #%(levelname)-8s [%(asctime)s] - %(name)s - %(message)s')

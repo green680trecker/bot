@@ -2,22 +2,20 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.types import Message
 
 from tg_bot.keyboards.all_replykeyboard import Reply_board
-from tg_bot.keyboards.all_replykeyboard import ReplyKeyboardRemove
-from tg_bot.models.connect_db import Base
+from tg_bot.models.connect_db import Word
 
 
 async def show_w(message: Message):
-    await message.answer("Хотите указать количество слов?", reply_markup=Reply_board.replay_keyboard("Yes", "Show_all"))
+    await message.answer("Хотите указать количество слов?", reply_markup=Reply_board(one_time_keyboard=True).replay_keyboard("Yes", "Show_all"))
 
 
 
 
 
 async def answer_collide(message: Message):
-        x = Base()
-        shows = x.select_words(all=True)
+        shows = Word().select_words(all=True)
         for show in shows:
-            await message.answer(f"{show[0]} - {show[1]}", reply_markup=ReplyKeyboardRemove())
+            await message.answer(f"{show[0]} - {show[1]}")
 
 
 

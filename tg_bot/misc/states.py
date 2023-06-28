@@ -27,5 +27,10 @@ class Forward_for_admin_photo(StatesGroup):
 class St_photo(StatesGroup):
     ph = State()
 
+class Add_state(StatesGroup):
+    st = State()
 
-
+class Del_admin_state(StatesGroup):
+    st = State()
+class Del_user_state(StatesGroup):
+    st = State()
