@@ -1,16 +1,11 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
-
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from dataclasses import dataclass
+@dataclass
 class Reply_board:
+    one_time_keyboard: bool = False
+    row_width: int = 2
+    input_field_placeholder: str = "Select button"
 
-    @staticmethod
-    def replay_keyboard(*args):
-        kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False, row_width=2)
-        if len(args) == 1:
-            return kb.add(KeyboardButton(text=args[0]))
-        elif len(args) == 2:
-            return kb.add(KeyboardButton(text=args[0]), KeyboardButton(text=args[1]))
-        elif len(args) == 3:
-            return kb.add(KeyboardButton(text=args[0]), KeyboardButton(text=args[1]), KeyboardButton(text=args[2]))
-        elif len(args) == 4:
-            return kb.add(KeyboardButton(text=args[0]), KeyboardButton(text=args[1]),
-                          KeyboardButton(text=args[2]), KeyboardButton(text=args[3]))
+    def replay_keyboard(self, *args):
+        kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=self.one_time_keyboard, row_width=self.row_width, input_field_placeholder=self.input_field_placeholder)
+
