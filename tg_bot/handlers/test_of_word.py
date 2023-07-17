@@ -8,8 +8,8 @@ from tg_bot.models.connect_db import Word
 
 number1 = randrange(1, 15)
 number2 = randrange(1, 15)
-word1 = Word().select_word_id(number1)
-word2 = Word().select_word_id(number2)
+word1 = Word(number1).select_word_id()
+word2 = Word(number2).select_word_id()
 
 async def test_word1(message: Message):
     global word1

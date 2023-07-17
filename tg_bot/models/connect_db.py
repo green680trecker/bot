@@ -5,9 +5,10 @@ from tg_bot.config import load_config
 
 class Base:
     """Connect to database and execute query"""
-    __slots__ = {"config", "connection"}
+    __slots__ = {"config", "connection", "id"}
 
-    def __init__(self):
+    def __init__(self, id: int = 0):
+        self.id = id
         self.config = load_config(".env")
         self.connection = pymysql.connect(
             host=self.config.db.host,
@@ -21,20 +22,6 @@ class Base:
 
 
 class Word(Base):
-    def insert_id(self, id):
-        """function for requester new users"""
-        try:
-            with self.connection.cursor() as cursor:
-                qurery_sql = "SELECT * FROM users WHERE user_id == %s"
-                cursor.execute(qurery_sql, id)
-                us = cursor.fetchone()
-                if not us:
-                    u_sql = "INSERT INTO users(user_id) VALUES(%s)"
-                    cursor.execute(qurery_sql, id)
-
-        finally:
-            self.connection.close()
-
     def insert_words(self, word_1, word_2):
         """function for insert new words"""
         try:
@@ -44,7 +31,7 @@ class Word(Base):
                 cursor.execute(qurery_sql, (word_1, word_2))
 
         except():
-            print("Lol1")
+            print("Error in insert_words")
         finally:
             self.connection.close()
 
@@ -64,11 +51,11 @@ class Word(Base):
             self.connection.close()
             return rows
 
-    def select_word_id(self, id):
+    def select_word_id(self):
         """function for select word to id"""
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute("SELECT word_en, word_ru FROM word WHERE id = %s", id)
+                cursor.execute("SELECT word_en, word_ru FROM word WHERE id = %s", self.id)
                 rows = cursor.fetchone()
         except Exception as ex:
             print(ex)
@@ -79,31 +66,31 @@ class Word(Base):
 
 
 class AdminQuery(Base):
-    def add_admin(self, user_id: int) -> None:
+    def add_admin(self) -> None:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE `users` SET useradmin=True WHERE user_id = {user_id}".format(user_id=user_id))
+                    "UPDATE `users` SET useradmin=True WHERE user_id = {user_id}".format(user_id=self.id))
         except:
             print("Error in add_admin")
 
         finally:
             self.connection.close()
 
-    def delete_admin(self, user_id: int) -> None:
+    def delete_admin(self) -> None:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "UPDATE `users` SET useradmin=False WHERE user_id = {user_id}".format(user_id=user_id))
+                    "UPDATE `users` SET useradmin=False WHERE user_id = {user_id}".format(user_id=self.id))
         except:
             print("Error in delete_admin")
         finally:
             self.connection.close()
-    def delete_user(self, user_id: int) -> None:
+    def delete_user(self) -> None:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "DELETE FROM users WHERE user_id = {user_id}".format(user_id=user_id))
+                    "DELETE FROM users WHERE user_id = {user_id}".format(user_id=self.id))
         except:
             print("Error in delete_user")
         finally:
@@ -111,30 +98,30 @@ class AdminQuery(Base):
 
 
 class NewUser(Base):
-    def add_user(self, user_id: int, username=None):
+    def add_user(self, username=None):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT EXISTS(SELECT user_id FROM users WHERE user_id = {user_id})".format(user_id=user_id))
+                    "SELECT EXISTS(SELECT user_id FROM users WHERE user_id = {user_id})".format(user_id=self.id))
                 res = cursor.fetchone()
                 if res[0] == False:
                     cursor.execute(
-                        "INSERT INTO users(user_id, username) VALUES ({user_id}, '{username}')".format(user_id=user_id, username=username))
+                        "INSERT INTO users(user_id, username) VALUES ({user_id}, '{username}')".format(user_id=self.id, username=username))
                     return True
                 else:
                     return False
-        # except:
-        #     print("Error in add_user")
+        except:
+            print("Error in add_user")
         finally:
             self.connection.close()
-# NewUser().add_user(1646574179)
+
 
 class Filter(Base):
-    def filter_admin(self, user_id: int):
+    def filter_admin(self):
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(
-                    "SELECT EXISTS(SELECT useradmin FROM users WHERE user_id = {user_id} and useradmin = True)".format(user_id=user_id))
+                    "SELECT EXISTS(SELECT useradmin FROM users WHERE user_id = {user_id} and useradmin = True)".format(user_id=self.id))
                 res = cursor.fetchone()
                 if res[0] == True:
                     return True

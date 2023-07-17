@@ -11,7 +11,7 @@ async def add_admin1(message: Message):
 
 async def add_admin2(message: Message, state: FSMContext):
     user_id = message.text
-    AdminQuery().add_admin(user_id)
+    AdminQuery(user_id).add_admin()
     await message.answer("Admin added")
     await state.finish()
 

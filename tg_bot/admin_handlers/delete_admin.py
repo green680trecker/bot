@@ -12,7 +12,7 @@ async def del_admin1(message: Message):
 
 async def del_admin2(message: Message, state: FSMContext):
     user_id = message.text
-    AdminQuery().delete_admin(user_id)
+    AdminQuery(user_id).delete_admin()
     await message.answer("Admin deleted")
     await state.finish()
 

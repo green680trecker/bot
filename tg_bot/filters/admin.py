@@ -12,5 +12,5 @@ class AdminFilter(BoundFilter):
     async def check(self, obj):
         if self.is_admin is None:
             return False
-        elif Filter().filter_admin(obj.from_user.id):
+        elif Filter(obj.from_user.id).filter_admin():
             return self.is_admin

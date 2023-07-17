@@ -5,9 +5,9 @@ from tg_bot.keyboards.all_replykeyboard import Reply_board
 
 
 async def user_start(message: Message):
-    user_id = int(message.from_user.id)
+    id = int(message.from_user.id)
     username = str(message.from_user.username)
-    NewUser().add_user(user_id=user_id, username=username)
+    NewUser(id=id).add_user(username=username)
     await message.answer(f"Hello, {message.from_user.first_name}!",
                          reply_markup=Reply_board(one_time_keyboard=True).replay_keyboard("/help"))
 

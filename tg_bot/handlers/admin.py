@@ -16,8 +16,8 @@ Welcome to the family my Lord
 <b>Other commands</b>:
     /lesson 
     /new_word
-    /remind
-    /quotes"""
+    /ii
+    /image_ii"""
     await message.answer(text=text)
 
 
