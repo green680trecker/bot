@@ -17,7 +17,8 @@ Welcome to the family my Lord
     /lesson 
     /new_word
     /ii
-    /image_ii"""
+    /image_ii
+    /speech_to_text"""
     await message.answer(text=text)
 
 

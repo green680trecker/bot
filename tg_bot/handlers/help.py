@@ -11,6 +11,7 @@ async def user_help(message: Message):
     /You_know
     /ii
     /image_ii
+    /speech_to_text
     """
     await message.answer(f"<b>All commands:</b>\n {Help_command}")
 

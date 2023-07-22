@@ -8,7 +8,7 @@ from tg_bot.admin_handlers.add_admin import register_add_admin
 from tg_bot.admin_handlers.delete_admin import register_del_admin
 from tg_bot.admin_handlers.delete_user import register_del_user
 from tg_bot.admin_handlers.image_openai import register_image_ii
-from tg_bot.admin_handlers.temporary_handler import register_some_func
+from tg_bot.admin_handlers.speech_to_text import register_speech
 from tg_bot.admin_handlers.test_inline_button import register_inline_button
 from tg_bot.admin_handlers.base_openai import register_openai_handler
 from tg_bot.channel_handlers.admin_forward_message import register_forward_message
@@ -35,7 +35,6 @@ from tg_bot.handlers.while_message import register_remind
 
 from tg_bot.middlewares.environment import EnvironmentMiddleware
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -50,7 +49,6 @@ def register_all_filters(dp):
 
 
 def register_all_handlers(dp):
-
     register_forward_message(dp)
     register_forward_photo(dp)
 
@@ -59,6 +57,7 @@ def register_all_handlers(dp):
     register_add_admin(dp)
     register_del_user(dp)
     register_inline_button(dp)
+    register_speech(dp)
 
     register_openai_handler(dp)
     register_help(dp)
@@ -75,7 +74,6 @@ def register_all_handlers(dp):
     register_collide(dp)
     register_user_id(dp)
     register_remind(dp)
-    register_some_func(dp)
     register_echo(dp)
 
 

@@ -53,3 +53,6 @@ class Base_ii(StatesGroup):
 
 class Image_ii(StatesGroup):
     st = State()
+
+class Mp3_state(StatesGroup):
+    st = State()
