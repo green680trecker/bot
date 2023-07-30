@@ -22,6 +22,7 @@ from tg_bot.handlers.bt_yes import register_show_yes
 from tg_bot.handlers.echo import register_echo
 from tg_bot.handlers.help import register_help
 from tg_bot.handlers.id import register_user_id
+from tg_bot.handlers.join_to_channel import register_join
 from tg_bot.handlers.new_words import reqister_word
 from tg_bot.handlers.photo import register_photo
 from tg_bot.handlers.save_docum import register_doc
@@ -59,6 +60,7 @@ def register_all_handlers(dp):
     register_inline_button(dp)
     register_speech(dp)
 
+    register_join(dp)
     register_openai_handler(dp)
     register_help(dp)
     register_doc(dp)

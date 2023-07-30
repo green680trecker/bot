@@ -17,7 +17,7 @@ async def func2(message: Message, state: FSMContext):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt="{}".format(message.text),
-        max_tokens=120,
+        max_tokens=200,
         temperature=0
     )
     await message.answer("{}".format(response["choices"][0]["text"]))

@@ -1,3 +1,6 @@
 .env
 .idea/*
 venv/*
+temporary.py
+Dockerfile
+.gitignore

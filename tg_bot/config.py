@@ -1,11 +1,13 @@
 from dataclasses import dataclass
 from environs import Env
 
+
 @dataclass
 class TgBot:
     token: str
     admin_ids: list[int]
     use_redis: bool
+
 
 @dataclass
 class Miscellaneous:
@@ -19,12 +21,15 @@ class DbConfig:
     user: str
     database: str
 
+
 @dataclass
 class Config:
     tg_bot: TgBot
     db: DbConfig
     misc: Miscellaneous
     api_token: str
+
+
 def load_config(path: str = None):
     env = Env()
     env.read_env(path)

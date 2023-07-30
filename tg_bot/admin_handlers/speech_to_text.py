@@ -3,6 +3,7 @@ from aiogram import Dispatcher
 from aiogram.types import Message, ContentType
 from aiogram.dispatcher import FSMContext
 import openai
+from os import remove
 from tg_bot.config import load_config
 
 
@@ -26,6 +27,7 @@ async def func2(message: Message, state: FSMContext):
     audio_file = open(file_dir, "rb")
     transcript = openai.Audio.transcribe("whisper-1", audio_file)
     await message.answer(text=transcript["text"])
+    remove(file_dir)
     await state.finish()
 
 
